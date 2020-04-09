@@ -1,6 +1,8 @@
 /*
-*   This file is used to test the Neon instinsic.
-*   by: Zihang Li 
+*   本工程用于学习Neon。
+*   This file is used to test the Neon instinsic. 
+*   Some comments will be in only Chinese.
+*   by: Pierrick Lee 
 */
 
 #include <iostream>
@@ -13,19 +15,18 @@
 #define colomn 640
 #define repeat_count 1000
 
-using namespace std;            // 640 , 480
-int16_t image[row][colomn];
+using namespace std;
+int16_t image[row][colomn];                     // 存储随机数
 int16_t image_2[row][colomn];
 
 int random_num();
-void add_neig(int16_t * dst, int16_t * src, int h, int w);
-void add2_neig(int16_t *dst, int16_t *src, int h, int w);
-void add3_neig(int h, int w);
+void add_neig(int h, int w);
 
 int main(){
     int row_t = 480;
     int colomn_t = 640;
-    ofstream later_array("./later.txt");    
+    ofstream later_array("./later.txt");                // 输出txt，用于对比数据
+
     // ------------ time calculation preparation
     struct timeval t0, t1;
     float total_time = 0.f;
@@ -33,21 +34,19 @@ int main(){
     float max_time = -__DBL_MAX__;    
     // ------------ time calculation preparation
 
-    random_num();               // put an 640*480 image into an array
-    gettimeofday(&t0, NULL);    // time start
+    random_num();                                       // 生成随机数
+    gettimeofday(&t0, NULL);                            // 计时开始
 
     // ------------- calculation start
     for(int t = 0; t < repeat_count; t++)
     {
-        // The start of calculation
-        add3_neig(row_t,colomn_t);                                            // 直接数组
-        //add2_neig(&(image_2[0][0]),&(image[0][0]),row_t,colomn_t);          // 计算指针
-	    //add_neig(&(image_2[0][0]),&(image[0][0]),row_t,colomn_t);           // 直接指针
-        // The end of calculation
+	    add_neig(row_t,colomn_t);
     }
     // ------------- calculation end
 
-    gettimeofday(&t1, NULL);    // time end 
+    gettimeofday(&t1, NULL);                            // 计时结束 
+
+    // 存储输出image_2到later.txt
     for(int i=0;i<row;i++){
         for(int j=0;j<colomn;j++){
             later_array << dec << image_2[i][j] << " ";
@@ -73,11 +72,11 @@ int main(){
     表示 a~b之间的一个整数
 */
 int random_num(){
-    ofstream previous_array("./previous.txt");
+    ofstream previous_array("./previous.txt");       // 存储输入image到previous.txt
     srand((int)time(0));
     for(int i=0;i<row;i++){
         for(int j=0; j<colomn; j++){
-                image[i][j] = rand()% 10000;         // 0~65536
+                image[i][j] = rand()% 10000;         // 0~10000
                 previous_array << dec << image[i][j] << " ";
         }
         previous_array << endl;
@@ -85,7 +84,7 @@ int random_num(){
     return 0;
 }
 
-void add3_neig(int h, int w){
+void add_neig(int h, int w){
     for(int i=0;i<h;i++){
         for(int j=0;j<w;j++){
             if(j == 0)
@@ -97,46 +96,4 @@ void add3_neig(int h, int w){
         }
 	}
 }
-
-void add2_neig(int16_t *dst, int16_t *src, int h, int w){
-    for(int i=0;i<h;i++){
-        int16_t* pld = dst + i*w;
-        int16_t* pls = src + i*w;
-        for(int j=0;j<w;j++){
-            if(j == 0){
-                *pld++ = *pls + *(pls+1);
-                pls++;
-            }
-            else if(j == w-1)
-                *pld = *pls + *(pls-1);
-            else{
-                *pld++ = *pls + *(pls+1) + *(pls-1);
-                pls++;
-            }
-        }
-    }
-}
-
-void add_neig(int16_t * dst, int16_t * src, int h, int w){
-    for(int i=0;i<h;i++){
-        for(int j=0;j<w;j++){
-            if(j == 0){
-                *dst++ = *src + *(src+1);
-                src++;
-            }
-            else if(j == w-1){
-                *dst++ = *src + *(src-1);
-		        src++;
-		    }
-            else
-		    {
-                *dst++ = *src + *(src+1) + *(src-1);
-		        src++;
-		    }
-        }
-}
-	
-
-} 
-
 
