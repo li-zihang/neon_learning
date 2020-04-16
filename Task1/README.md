@@ -46,8 +46,9 @@ Task1:
 
 1. Create a 2-D array `image[640][480]` filled with random number;
 
- 	2. Derive  `image2[640][480]` from `image[640][480]`. Every element equals the sum of itself and its neighbor two elements. For every first and last element of every line, pad a '0'.
- 	3. Compile and run this demo on `Raspberry 4B`
+2. Derive  `image2[640][480]` from `image[640][480]`. Every element equals the sum of itself and its neighbor two elements. For every first and last element of every line, pad a '0'.
+
+3. Compile and run this demo on `Raspberry 4B`
 
 ----------------------
 
