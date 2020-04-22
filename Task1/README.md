@@ -46,24 +46,19 @@ The purpose of this project is to learn Arm Neon.
 
    选项：
 
-   (1) `-S` 生成汇编文件`task1.S`；
+   `-s` 输出源数组和完成计算后的数组到txt文件
 
-   (2) `-mfpu=neon` 使用`arm_neon.h` (取决于平台)；
-
-   (3)  `-O3` 进行自动优化。
+   `-mfpu=neon` 使用`arm_neon.h` 
 
 5. 使用方法
 
-   `./a.out -s`
-
    (1) 分别使用`task2.cpp: 39-44` 所加入的函数，并观察运行时间差异；
 
-   (2) `-s` 保存源和计算完成的数组到txt文件；
-   
-   (3) 编译时使用 `-O3` 进行优化，观察运行时间差异；
+   (2) 编译时使用 `-O3` 进行优化，观察运行时间差异；
 
-   (3) 编译时使用 `-S` 生成汇编文件`task1.S` ，观察使用不同`add` 函数的差异。
-  
+   (3) 编译时使用 `-S` 生成汇编文件`task.S` ，观察使用不同`add` 函数的差异。
+
+   
 ----------------------
 Task1:
 
@@ -107,20 +102,19 @@ Task1:
 
    options:
 
-   (1) `-S` to produce assembly language file `task.S`.
+   (1) `-S` to produce assembly language file `task1.S`.
 
    (2) `-mfpu=neon` to use `arm_neon.h` (up to platform).
 
    (3) `-O3` to optimise program automatically.
   
-   
 5. How to use
 
    `./a.out -s`
 
    (1) Use the functions on`task2.cpp: 39-44` respectively, and observe the program running time difference;
 
-   (2) `-s` to save source and destination array. 
+   (2) `-s` to save source and destination array to txt files. 
 
    (3) Use `-O3` while compling, observe the program running time difference.
 
