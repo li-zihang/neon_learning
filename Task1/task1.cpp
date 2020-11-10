@@ -38,10 +38,10 @@ int main(int argc, char* argv[]){
     {
 	    add_neig(dst, src, row, colomn);
         #ifdef __ARM_NEON
-        // add_intrinsics_d(&(dst[0][0]),&(src[0][0]),row,colomn);
-        // add_intrinsics_q(&(dst[0][0]),&(src[0][0]),row,colomn);
-        // add_intrinsics_rearrange_d(&(dst[0][0]),&(src[0][0]),row,colomn);
-        // add_intrinsics_rearrange_q(&(dst[0][0]),&(src[0][0]),row,colomn);
+         add_intrinsics_d(&(dst[0][0]),&(src[0][0]),row,colomn);
+         add_intrinsics_q(&(dst[0][0]),&(src[0][0]),row,colomn);
+         add_intrinsics_rearrange_d(&(dst[0][0]),&(src[0][0]),row,colomn);
+         add_intrinsics_rearrange_q(&(dst[0][0]),&(src[0][0]),row,colomn);
         #endif
     }
     gettimeofday(&t1, NULL);                            // 计时结束
