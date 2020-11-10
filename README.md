@@ -1,6 +1,5 @@
 # Arm Neon learning
 
-
 创建本项目的目的是记录学习Neon的过程。<br>
 The purpose of this project is to record how I learn Arm Neon.
 
@@ -19,6 +18,13 @@ The purpose of this project is to record how I learn Arm Neon.
 ```
 <br>
 
+# 工程使用方法：
+1）本地pc安装adb
+2）准备arm内核的开发板
+3）执行编译:
+   ./bash/build_android_aarch64.sh install
+4) 执行测试：
+   ./bash/run_demo.sh
 
 ---
 2020/04/09
